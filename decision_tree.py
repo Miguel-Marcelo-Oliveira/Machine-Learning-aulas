@@ -31,10 +31,10 @@ def get_mae(max_leaf_nodes, train_X, val_X, train_y, val_y):
     home_model = DecisionTreeRegressor(max_leaf_nodes=max_leaf_nodes, random_state=0)
     home_model.fit(train_X, train_y)
     preds_val = home_model.predict(val_X)
-    mae = mean_absolute_error(val_y, preds_val)
+    mae = mean_absolute_error(preds_val, val_y)
     return(mae)
 
 # comparando MAE com diferentes números máximos de folhas
-for max_leaf_nodes in [5, 50, 500, 5000]:
+for max_leaf_nodes in [5, 50, 100, 500, 5000]:
     my_mae = get_mae(max_leaf_nodes, train_X, val_X, train_y, val_y)
     print("Max leaf nodes: %d  \t\t Mean Absolute Error:  %d" %(max_leaf_nodes, my_mae))
